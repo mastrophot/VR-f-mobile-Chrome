@@ -55,7 +55,11 @@
         <div class="video-overlay" id="video-overlay-left">
           <span class="video-title" id="video-title-left">Select a video...</span>
         </div>
-        <div id="youtube-player-left"></div>
+        <!-- Content Containers -->
+        <div id="youtube-player-left" class="content-layer active"></div>
+        <video id="html5-player-left" class="content-layer" playsinline webkit-playsinline></video>
+        <iframe id="generic-browser-left" class="content-layer" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups"></iframe>
+        
         <div id="gamepad-cursor-left" class="gamepad-cursor"></div>
       </div>
 
@@ -64,7 +68,11 @@
         <div class="video-overlay" id="video-overlay-right">
           <span class="video-title" id="video-title-right">Select a video...</span>
         </div>
-        <div id="youtube-player-right"></div>
+        <!-- Content Containers -->
+        <div id="youtube-player-right" class="content-layer active"></div>
+        <video id="html5-player-right" class="content-layer" playsinline webkit-playsinline muted></video>
+        <iframe id="generic-browser-right" class="content-layer" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups"></iframe>
+        
         <div id="gamepad-cursor-right" class="gamepad-cursor"></div>
       </div>
 
@@ -72,17 +80,21 @@
 
       <!-- BOTTOM CONTROLS -->
       <div id="bottom-controls">
+        <div id="browser-nav">
+          <button class="ctrl-btn narrow" id="nav-back" title="Back">⬅</button>
+          <button class="ctrl-btn narrow" id="nav-reload" title="Reload">⟳</button>
+        </div>
         <div id="search-container">
-          <span class="search-icon">🔍</span>
+          <span class="search-icon">🌐</span>
           <input
             type="text"
             id="search-input"
-            placeholder="Search YouTube..."
+            placeholder="Search or Enter URL..."
             autocomplete="off"
             readonly
           />
         </div>
-        <button id="search-btn">Search</button>
+        <button id="search-btn">Go</button>
         <button class="ctrl-btn" id="keyboard-btn" title="Toggle Keyboard (△)">
           ⌨
         </button>
