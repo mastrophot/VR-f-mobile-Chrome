@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="description"
+      content="VR Cinema — Watch YouTube in virtual reality with DualShock 4 controller. Optimized for BOBOVR Z5 and Google Pixel 6 Pro."
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="screen-orientation" content="landscape" />
+    <title>VR Cinema — Watch YouTube in VR</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading VR Cinema...</div>
+    </div>
+
+    <!-- GAMEPAD CURSOR -->
+    <div id="gamepad-cursor"></div>
+
+    <!-- TOAST NOTIFICATIONS -->
+    <div id="toast-container"></div>
+
+    <!-- MAIN APP -->
+    <div id="app-container">
+      <!-- TOP BAR -->
+      <div id="top-bar">
+        <div class="logo">
+          <div class="logo-icon">🎬</div>
+          <span>VR Cinema</span>
+        </div>
+        <div class="gamepad-status">
+          <div class="status-dot" id="status-dot"></div>
+          <span id="status-text">No controller</span>
+        </div>
+      </div>
+
+      <!-- PRESET VIDEO CHIPS -->
+      <div id="presets-bar"></div>
+
+      <!-- VIDEO AREA -->
+      <div id="video-area">
+        <div class="video-overlay" id="video-overlay">
+          <span class="video-title" id="video-title">Select a video...</span>
+        </div>
+        <div id="youtube-player-container">
+          <div id="yt-player"></div>
+        </div>
+      </div>
+
+      <!-- BOTTOM CONTROLS -->
+      <div id="bottom-controls">
+        <div id="search-container">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search YouTube..."
+            autocomplete="off"
+            readonly
+          />
+        </div>
+        <button id="search-btn">Search</button>
+        <button class="ctrl-btn" id="keyboard-btn" title="Toggle Keyboard (△)">
+          ⌨
+        </button>
+        <button class="ctrl-btn" id="help-btn" title="Help (Share)">❓</button>
+        <button class="ctrl-btn" id="vr-btn" title="Enter VR Mode">
+          🥽 VR
+        </button>
+      </div>
+    </div>
+
+    <!-- VIRTUAL KEYBOARD -->
+    <div id="virtual-keyboard">
+      <div id="keyboard-keys"></div>
+    </div>
+
+    <!-- SEARCH RESULTS OVERLAY -->
+    <div id="search-results">
+      <div class="results-header">
+        <h3>📺 Search Results</h3>
+        <button class="close-results" id="close-results-btn">
+          ✕ Close (○)
+        </button>
+      </div>
+      <div id="results-list"></div>
+    </div>
+
+    <!-- HELP OVERLAY -->
+    <div id="help-overlay">
+      <div class="help-card">
+        <h2>🎮 DualShock 4 Controls</h2>
+        <div class="help-row">
+          <span class="help-btn-icon">Left Stick</span>
+          <span class="help-action">Move cursor</span>
+        </div>
+        <div class="help-row">
+          <span class="help-btn-icon">✕ Cross</span>
+          <span class="help-action">Click / Select / Type key</span>
+        </div>
+        <div class="help-row">
+          <span class="help-btn-icon">○ Circle</span>
+          <span class="help-action">Back / Close keyboard</span>
+        </div>
+        <div class="help-row">
+          <span class="help-btn-icon">△ Triangle</span>
+          <span class="help-action">Toggle virtual keyboard</span>
+        </div>
+        <div class="help-row">
+          <span class="help-btn-icon">□ Square</span>
+          <span class="help-action">Toggle fullscreen</span>
+        </div>
+        <div class="help-row">
+          <span class="help-btn-icon">Options</span>
+          <span class="help-action">Play / Pause video</span>
+        </div>
+        <div class="help-row">
+          <span class="help-btn-icon">L1 / R1</span>
+          <span class="help-action">Previous / Next preset video</span>
+        </div>
+        <div class="help-row">
+          <span class="help-btn-icon">D-pad</span>
+          <span class="help-action">Navigate keyboard / search results</span>
+        </div>
+        <div class="help-row">
+          <span class="help-btn-icon">Share</span>
+          <span class="help-action">Show this help</span>
+        </div>
+        <button class="help-close" id="help-close-btn">Got it!</button>
+      </div>
+    </div>
+
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <!-- Main Script -->
+    <script src="script.js"></script>
+  </body>
+</html>
