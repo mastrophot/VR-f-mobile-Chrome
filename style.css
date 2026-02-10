@@ -174,55 +174,76 @@ body {
   }
 }
 
-/* ---- VIDEO AREA ---- */
-#video-area {
+/* ---- VR CONTAINER & EYES ---- */
+#vr-container {
   flex: 1;
+  display: flex;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.eye-viewport {
+  width: 50%;
+  height: 100%;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000;
   overflow: hidden;
+  border-right: 1px solid #111;
 }
 
-#youtube-player-container {
+.eye-viewport:last-child {
+  border-right: none;
+}
+
+
+
+#right-eye {
+  /* Secondary view - hidden in 2D mode */
+  display: none;
+}
+
+/* 2D Mode: Left eye takes full width */
+body:not(.vr-active) #right-eye {
+  display: none !important;
+}
+
+body:not(.vr-active) #left-eye {
+  width: 100%;
+  border-right: none;
+}
+
+/* VR Mode: Both eyes visible */
+body.vr-active #right-eye {
+  display: flex !important;
+}
+
+/* Embed styles */
+#youtube-player-left, #youtube-player-right {
   width: 100%;
   height: 100%;
-  position: relative;
+  pointer-events: none; /* YouTube captures clicks otherwise */
 }
 
-#youtube-player-container iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
+/* VR Overlay */
 .video-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  padding: 12px 16px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding: 16px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.8), transparent);
+  z-index: 20;
   opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 10;
+  transition: opacity 0.3s;
 }
 
-#video-area:hover .video-overlay,
-.video-overlay.visible {
+#vr-container:hover .video-overlay {
   opacity: 1;
 }
 
-.video-title {
-  font-size: 14px;
-  font-weight: 500;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-}
 
 /* ---- BOTTOM CONTROLS ---- */
 #bottom-controls {
@@ -454,26 +475,22 @@ body {
 }
 
 /* ---- GAMEPAD CURSOR ---- */
-#gamepad-cursor {
-  position: fixed;
-  width: 24px;
-  height: 24px;
+.gamepad-cursor {
+  position: absolute; /* Relative to eye-viewport */
+  width: 20px;
+  height: 20px;
   border: 2px solid var(--cursor-color);
   border-radius: 50%;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  transition:
-    width 0.15s,
-    height 0.15s,
-    border-color 0.15s;
-  box-shadow:
-    0 0 10px rgba(0, 255, 136, 0.4),
-    inset 0 0 6px rgba(0, 255, 136, 0.2);
-  display: none;
+  transition: width 0.1s, height 0.1s, border-color 0.1s;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
 }
 
-#gamepad-cursor::after {
+.gamepad-cursor::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -485,11 +502,11 @@ body {
   transform: translate(-50%, -50%);
 }
 
-#gamepad-cursor.clicking {
-  width: 18px;
-  height: 18px;
-  border-color: #fff;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+.gamepad-cursor.clicking {
+  width: 16px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
 }
 
 /* ---- SEARCH RESULTS ---- */
@@ -630,16 +647,16 @@ body {
   }
 }
 
-/* ---- VR STEREOSCOPIC MODE (CSS fallback) ---- */
-.vr-stereo-mode #app-container {
-  display: flex;
-  flex-direction: row;
+/* ---- VR ACTIVE STATE ---- */
+body.vr-active #top-bar,
+body.vr-active #bottom-controls,
+body.vr-active #presets-bar,
+body.vr-active #virtual-keyboard {
+  display: none !important;
 }
 
-.vr-stereo-mode .vr-eye {
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
+body.vr-active #app-container {
+  background: #000;
 }
 
 /* ---- HELP OVERLAY ---- */

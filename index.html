@@ -27,9 +27,6 @@
       <div class="loading-text">Loading VR Cinema...</div>
     </div>
 
-    <!-- GAMEPAD CURSOR -->
-    <div id="gamepad-cursor"></div>
-
     <!-- TOAST NOTIFICATIONS -->
     <div id="toast-container"></div>
 
@@ -50,15 +47,28 @@
       <!-- PRESET VIDEO CHIPS -->
       <div id="presets-bar"></div>
 
-      <!-- VIDEO AREA -->
-      <div id="video-area">
-        <div class="video-overlay" id="video-overlay">
-          <span class="video-title" id="video-title">Select a video...</span>
+    <!-- VR CONTAINER (Holds both eyes) -->
+    <div id="vr-container">
+      
+      <!-- LEFT EYE (Main Player) -->
+      <div id="left-eye" class="eye-viewport">
+        <div class="video-overlay" id="video-overlay-left">
+          <span class="video-title" id="video-title-left">Select a video...</span>
         </div>
-        <div id="youtube-player-container">
-          <div id="yt-player"></div>
-        </div>
+        <div id="youtube-player-left"></div>
+        <div id="gamepad-cursor-left" class="gamepad-cursor"></div>
       </div>
+
+      <!-- RIGHT EYE (Synced Player, visible only in VR) -->
+      <div id="right-eye" class="eye-viewport">
+        <div class="video-overlay" id="video-overlay-right">
+          <span class="video-title" id="video-title-right">Select a video...</span>
+        </div>
+        <div id="youtube-player-right"></div>
+        <div id="gamepad-cursor-right" class="gamepad-cursor"></div>
+      </div>
+
+    </div>
 
       <!-- BOTTOM CONTROLS -->
       <div id="bottom-controls">
